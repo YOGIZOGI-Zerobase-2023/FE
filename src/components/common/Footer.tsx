@@ -29,7 +29,7 @@ const channels = [
 const Footer = () => {
   return (
     <footer className="flex flex-col justify-center md:justify-between items-center mx-16 my-8 md:flex-row">
-      <p className="text-gray-500 order-2 md:order-1">
+      <p className="text-gray-500 order-2 md:order-1 text-xs">
         &copy; 2023 Yogizogi All Rights Reserved.
       </p>
       <div className="flex gap-8 order-1 md:order-2 mb-4 md:mb-0">
