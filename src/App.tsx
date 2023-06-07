@@ -18,7 +18,7 @@ function App() {
   return (
     <BrowserRouter>
       <Nav />
-      <main>
+      <main className="pt-20">
         <Routes>
           <Route path="/*" element={<Main />} />
           <Route path="/sign-in" element={<SignIn />} />
