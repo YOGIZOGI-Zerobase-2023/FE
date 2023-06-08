@@ -4,8 +4,10 @@ interface IRatingStars {
   rate: number;
 }
 
+const MAX_RATE = 10;
+
 const RatingStars = ({ rate }: IRatingStars) => {
-  const starFill = (rate / 5) * 100;
+  const starFill = (rate / MAX_RATE) * 100;
 
   return (
     <div className="flex items-center gap-1">
