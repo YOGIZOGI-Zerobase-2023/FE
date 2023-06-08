@@ -14,10 +14,10 @@ const Nav = () => {
   };
 
   return (
-    <div className="fixed flex-col navbar bg-base-100 w-full drop-shadow-md">
+    <nav className="fixed flex-col navbar bg-base-100 w-full drop-shadow-md p-0">
       <div
-        className="m-auto h-16 w-full"
-        style={{ maxWidth: '1294px', minWidth: '375px' }}
+        className="m-auto h-12 w-full max-w-5xl px-2"
+        style={{ minWidth: '375px' }}
       >
         <div className="flex-1 pl-4">
           <Link to={'/'} className="cursor-pointer text-xl font-bold">
@@ -90,7 +90,7 @@ const Nav = () => {
           />
         </div>
       )}
-    </div>
+    </nav>
   );
 };
 
