@@ -28,18 +28,31 @@ const channels = [
 
 const Footer = () => {
   return (
-    <footer className="flex flex-col justify-center md:justify-between items-center mx-16 my-8 md:flex-row">
-      <p className="text-gray-500 order-2 md:order-1 text-xs">
-        &copy; 2023 Yogizogi All Rights Reserved.
-      </p>
-      <div className="flex gap-8 order-1 md:order-2 mb-4 md:mb-0">
-        {channels.map((channel) => {
-          return (
-            <div key={channel.name} className="tooltip" data-tip={channel.name}>
-              <Link to={channel.url}>{channel.logo}</Link>
-            </div>
-          );
-        })}
+    <footer
+      className="absolute bottom-0 flex justify-center items-center w-full min-h-20 h-20 md:h-12 md:min-h-12"
+      style={{
+        boxShadow:
+          '0 -1px 3px 0px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
+        minWidth: '375px'
+      }}
+    >
+      <div className="w-full max-w-5xl flex flex-col md:flex-row justify-center md:justify-between items-center px-8">
+        <p className="text-gray-500 order-2 md:order-1 text-xs">
+          &copy; 2023 Yogizogi All Rights Reserved.
+        </p>
+        <div className="flex gap-8 order-1 md:order-2 mb-4 md:mb-0">
+          {channels.map((channel) => {
+            return (
+              <div
+                key={channel.name}
+                className="tooltip"
+                data-tip={channel.name}
+              >
+                <Link to={channel.url}>{channel.logo}</Link>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </footer>
   );
