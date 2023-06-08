@@ -1,34 +1,21 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import InputBox from '../components/login/InputBox';
-
-interface SignInFormDataProps {
-  email: string;
-  password: string;
-}
+import useSignIn from '../hooks/useSignIn';
 
 const SignIn = () => {
-  const [signInData, setSignInData] = useState<SignInFormDataProps>({
-    email: '',
-    password: ''
-  });
-
-  const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const target = e.target;
-    const name = target.name;
-    const value = target.value;
-    setSignInData((signInData) => ({ ...signInData, [name]: value }));
-  };
-
-  const handleSubmitLogin = () => {
-    // API & Validation
-  };
+  const {
+    signInData,
+    isDisabled,
+    handleChangeInput,
+    handleSubmitSignIn,
+    handdleKakaoSignIn
+  } = useSignIn();
 
   return (
-    <div className="pt-20" style={{ height: 'calc(100vh - 100px)' }}>
+    <div style={{ height: 'calc(100vh - 116px)' }}>
       <div className="h-full flex">
         <div className="relative flex-1" style={{ backgroundColor: '#00BB98' }}>
-          <h1 className="pt-20 text-center text-7xl text-white font-bold">
+          <h1 className="absolute top-1/4 pr-36 w-full text-end text-7xl text-white font-bold max-lg:text-center max-lg:pr-0">
             YogiZogi
           </h1>
           <img
@@ -39,10 +26,10 @@ const SignIn = () => {
           />
         </div>
         <div className="relative bg-white flex-1">
-          <div className="absolute max-w-sm w-full pl-5 pr-5 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+          <div className="absolute max-w-sm w-full pl-10 pr-10 top-1/2 left-16 -translate-y-1/2 max-lg:left-1/2 max-lg:-translate-x-1/2">
             <h1 className="text-3xl font-bold">로그인</h1>
             <div className="divider m-0 pt-3 pb-4"></div>
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col">
               <InputBox
                 title="이메일"
                 name="email"
@@ -59,7 +46,7 @@ const SignIn = () => {
                 value={signInData.password}
                 handleChange={handleChangeInput}
               />
-              <div className="form-control">
+              <div className="form-control pt-2">
                 <label className="label cursor-pointer justify-start gap-2">
                   <input type="checkbox" className="toggle" />
                   <span className="label-text">로그인 유지</span>
@@ -67,13 +54,25 @@ const SignIn = () => {
               </div>
             </div>
             <div className="flex flex-col gap-4 pt-2">
+              {isDisabled ? (
+                <button
+                  className="btn btn-disabled"
+                  onClick={handleSubmitSignIn}
+                >
+                  로그인
+                </button>
+              ) : (
+                <button
+                  className="btn text-white bg-blue-700 hover:bg-blue-600"
+                  onClick={handleSubmitSignIn}
+                >
+                  로그인
+                </button>
+              )}
               <button
-                className="btn text-white bg-blue-700 hover:bg-blue-600"
-                onClick={handleSubmitLogin}
+                className="btn gap-0 bg-yellow-300 hover:bg-yellow-300"
+                onClick={handdleKakaoSignIn}
               >
-                로그인
-              </button>
-              <button className="btn gap-0 bg-yellow-300 hover:bg-yellow-300">
                 <img
                   src="/assets/icons/kakaoicon.png"
                   alt="카카오 로고"
