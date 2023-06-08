@@ -14,7 +14,7 @@ const Nav = () => {
   };
 
   return (
-    <div className="fixed flex-col navbar bg-base-100 w-full drop-shadow-md">
+    <div className="fixed flex-col navbar bg-base-100 w-full drop-shadow-md z-50">
       <div
         className="m-auto h-16 w-full"
         style={{ maxWidth: '1294px', minWidth: '375px' }}

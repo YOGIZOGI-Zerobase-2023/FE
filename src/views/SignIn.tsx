@@ -25,7 +25,7 @@ const SignIn = () => {
   };
 
   return (
-    <div className="pt-20" style={{ height: 'calc(100vh - 100px)' }}>
+    <div style={{ height: 'calc(100vh - 166px)' }}>
       <div className="h-full flex">
         <div className="relative flex-1" style={{ backgroundColor: '#00BB98' }}>
           <h1 className="pt-20 text-center text-7xl text-white font-bold">
