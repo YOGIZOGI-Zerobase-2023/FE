@@ -4,7 +4,17 @@ import { describe, expectTypeOf, it } from 'vitest';
 describe('MSW Fetch Test: ', () => {
   it('/login', async () => {
     const result = { X_Auth_Token: 'abc123' };
-    const { data } = await axios('/login');
+    const { data } = await axios({
+      method: 'post',
+      url: '/login',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: {
+        email: '123@naver.com',
+        password: '12345678'
+      }
+    });
 
     expectTypeOf(data).toBeObject();
     expect(data.X_Auth_Token).toBe(result.X_Auth_Token);

@@ -46,7 +46,7 @@ const useSignIn = () => {
     }
 
     if (res.status === 200) {
-      const token = res.data;
+      const token = res.data.X_Auth_Token;
       localStorage.setItem(AUTH_TOKEN_KEY, token);
       setAuthUser({ token, isLoggedIn: true });
       navigate('/');
