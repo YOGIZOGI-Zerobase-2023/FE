@@ -1,6 +1,4 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Footer from './components/common/Footer';
-import Nav from './components/common/Nav';
 import AccommodationDetail from './views/AccomodationDetail';
 import Main from './views/Main';
 import Payment from './views/Payment';
@@ -11,6 +9,7 @@ import SignUp from './views/SignUp';
 import PageNotFound from './views/PageNotFound';
 import { useEffect } from 'react';
 import { mswTest } from './mocks/mswTestForBrowser';
+import Layout from './components/common/Layout';
 
 function App() {
   useEffect(() => {}, []);
@@ -18,8 +17,7 @@ function App() {
   mswTest();
   return (
     <BrowserRouter>
-      <Nav />
-      <main className="pt-20">
+      <Layout>
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/sign-in" element={<SignIn />} />
@@ -33,8 +31,7 @@ function App() {
           <Route path="/payment" element={<Payment />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
-      </main>
-      <Footer />
+      </Layout>
     </BrowserRouter>
   );
 }
