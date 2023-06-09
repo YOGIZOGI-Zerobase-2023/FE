@@ -7,6 +7,12 @@ export interface SignInFormDataProps {
   password: string;
 }
 
+export interface SignUpFormDataProps extends SignInFormDataProps {
+  nickname: string;
+  passwordCheck: string;
+  phone: string;
+}
+
 export const fetchSignIn = async (data: SignInFormDataProps) => {
   const res = await axios({
     method: 'post',

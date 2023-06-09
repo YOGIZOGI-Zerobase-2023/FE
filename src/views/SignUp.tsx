@@ -1,52 +1,20 @@
-import { useEffect, useState } from 'react';
 import InputBox from '../components/login/InputBox';
-
-interface SignUpFormDataProps {
-  [key: string]: string;
-  email: string;
-  nickname: string;
-  password: string;
-  passwordCheck: string;
-}
+import useSignUp from '../hooks/useSignUp';
+import { useRecoilValue } from 'recoil';
+import { authUser as authAtom } from '../store/atom/authAtom';
 
 const SignUp = () => {
-  const [isDisabled, setIsDisabled] = useState<boolean>(true);
-  const [signUpData, setSignUpData] = useState<SignUpFormDataProps>({
-    email: '',
-    nickname: '',
-    password: '',
-    passwordCheck: ''
-  });
+  const authUser = useRecoilValue(authAtom);
+  const { signUpData, isDisabled, handleChangeInput, handleSubmitSignUp } =
+    useSignUp();
 
-  const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const target = e.target;
-    const name = target.name;
-    const value = target.value;
-    setSignUpData((signUpData) => ({ ...signUpData, [name]: value }));
-  };
-
-  const handleSubmitSignUp = () => {
-    // API & Validation
-    console.log(signUpData);
-  };
-
-  const changeBtnDisabled = () => {
-    let isCheck = false;
-    for (let key in signUpData) {
-      if (!signUpData[key]) {
-        isCheck = true;
-      }
-    }
-
-    setIsDisabled(isCheck);
-  };
-
-  useEffect(() => {
-    changeBtnDisabled();
-  }, [signUpData]);
+  if (authUser.isLoggedIn) {
+    location.href = '/';
+    return <></>;
+  }
 
   return (
-    <div style={{ height: 'calc(100vh - 166px)' }}>
+    <div style={{ height: 'calc(100vh - 112px)' }}>
       <div className="h-full flex">
         <div className="relative flex-1" style={{ backgroundColor: '#00BB98' }}>
           <h1 className="absolute top-1/4 pr-36 w-full text-end text-7xl text-white font-bold  max-lg:text-center max-lg:pr-0">
@@ -94,6 +62,14 @@ const SignUp = () => {
                 type="password"
                 placeholder="비밀번호를 다시 입력해주세요."
                 value={signUpData.passwordCheck}
+                handleChange={handleChangeInput}
+              />
+              <InputBox
+                title="휴대폰 번호"
+                name="phone"
+                type="tel"
+                placeholder="휴대폰 번호를 입력해주세요."
+                value={signUpData.phone}
                 handleChange={handleChangeInput}
               />
             </div>

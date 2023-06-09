@@ -1,7 +1,7 @@
 import React from 'react';
 
 export interface InputProps {
-  type: 'text' | 'password';
+  type: 'text' | 'password' | 'tel';
   name: string;
   placeholder: string;
   value: string;

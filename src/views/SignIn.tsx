@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import InputBox from '../components/login/InputBox';
 import useSignIn from '../hooks/useSignIn';
 
@@ -6,13 +6,19 @@ const SignIn = () => {
   const {
     signInData,
     isDisabled,
+    authUser,
     handleChangeInput,
     handleSubmitSignIn,
-    handdleKakaoSignIn
+    handleKakaoSignIn
   } = useSignIn();
 
+  if (authUser.isLoggedIn) {
+    location.href = '/';
+    return <></>;
+  }
+
   return (
-    <div style={{ height: 'calc(100vh - 116px)' }}>
+    <div style={{ height: 'calc(100vh - 112px)' }}>
       <div className="h-full flex">
         <div className="relative flex-1" style={{ backgroundColor: '#00BB98' }}>
           <h1 className="absolute top-1/4 pr-36 w-full text-end text-7xl text-white font-bold max-lg:text-center max-lg:pr-0">
@@ -71,7 +77,7 @@ const SignIn = () => {
               )}
               <button
                 className="btn gap-0 bg-yellow-300 hover:bg-yellow-300"
-                onClick={handdleKakaoSignIn}
+                onClick={handleKakaoSignIn}
               >
                 <img
                   src="/assets/icons/kakaoicon.png"

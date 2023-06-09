@@ -59,7 +59,7 @@ const useSignIn = () => {
   };
 
   const handleKakaoSignIn = () => {
-    console.log('kakao login');
+    alert('kakao login');
   };
 
   const changeBtnDisabled = () => {
