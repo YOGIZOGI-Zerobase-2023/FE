@@ -20,6 +20,12 @@ export const handlers = [
     const body = await req.json();
     return res(ctx.status(200), ctx.json({ X_Auth_Token: 'abc123' }));
   }),
+  // 일반 회원가입
+  rest.post(`/signup`, async (req, res, ctx) => {
+    const body = await req.json();
+    console.log(body);
+    return res(ctx.status(201));
+  }),
 
   // 카테고리 검색
   rest.get<HandlersProps>(`/search/:category`, async (req, res, ctx) => {

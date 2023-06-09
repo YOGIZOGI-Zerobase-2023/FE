@@ -72,7 +72,7 @@ const Nav = () => {
               </ul>
             </div>
           ) : (
-            <Link to={'/sign-in'} className="btn btn-error text-white">
+            <Link to={'/signIn'} className="btn btn-error text-white">
               로그인
             </Link>
           )}
