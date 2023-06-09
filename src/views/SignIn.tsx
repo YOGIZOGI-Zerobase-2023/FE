@@ -88,7 +88,7 @@ const SignIn = () => {
               </button>
               <p className="text-gray-500 text-sm text-center">
                 계정이 없으신가요?{' '}
-                <Link to={'/sign-up'} className="text-blue-600">
+                <Link to={'/signUp'} className="text-blue-600">
                   가입하기
                 </Link>
               </p>

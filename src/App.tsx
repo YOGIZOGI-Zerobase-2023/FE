@@ -10,14 +10,13 @@ import PageNotFound from './views/PageNotFound';
 import Layout from './components/common/Layout';
 
 function App() {
-
   return (
     <BrowserRouter>
       <Layout>
         <Routes>
           <Route path="/" element={<Main />} />
-          <Route path="/sign-in" element={<SignIn />} />
-          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/signIn" element={<SignIn />} />
+          <Route path="/signUp" element={<SignUp />} />
           <Route path="/searchResult" element={<SearchResult />} />
           <Route
             path="/accommodationDetail"
