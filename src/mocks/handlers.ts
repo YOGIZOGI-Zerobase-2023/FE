@@ -16,7 +16,8 @@ const [userLon, userLat] = [37.57, 126.9];
 
 export const handlers = [
   // 일반 로그인
-  rest.get(`/login`, async (req, res, ctx) => {
+  rest.post(`/login`, async (req, res, ctx) => {
+    const body = await req.json();
     return res(ctx.status(200), ctx.json({ X_Auth_Token: 'abc123' }));
   }),
 
@@ -78,29 +79,26 @@ export const handlers = [
     }
   }),
 
-  rest.get<HandlersProps>(
-    `/chat/:chat_room_id`,
-    async (req, res, ctx) => {
-      return res(
-        ctx.status(200),
-        ctx.json({
-          chatRoomId: 1,
-          messages: [
-            {
-              messageId: 10,
-              userId: 2,
-              messageDetail: '여기 어때?',
-              messageRegisterTime: 1685861379813
-            },
-            {
-              messageId: 11,
-              userId: 3,
-              messageDetail: '시설 괜찮은듯',
-              messageRegisterTime: 1685861379813
-            }
-          ]
-        })
-      );
-    }
-  )
+  rest.get<HandlersProps>(`/chat/:chat_room_id`, async (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json({
+        chatRoomId: 1,
+        messages: [
+          {
+            messageId: 10,
+            userId: 2,
+            messageDetail: '여기 어때?',
+            messageRegisterTime: 1685861379813
+          },
+          {
+            messageId: 11,
+            userId: 3,
+            messageDetail: '시설 괜찮은듯',
+            messageRegisterTime: 1685861379813
+          }
+        ]
+      })
+    );
+  })
 ];
