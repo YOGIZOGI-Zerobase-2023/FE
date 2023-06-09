@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import { SignInFormDataProps, fetchSignIn } from '../api/auth';
 import { useEffect, useState } from 'react';
-import { useSetRecoilState } from 'recoil';
-import { AUTH_TOKEN_KEY, authUser } from '../store/atom/authAtom';
+import { useRecoilState } from 'recoil';
+import { AUTH_TOKEN_KEY, authUser as authAtom } from '../store/atom/authAtom';
 
 export const validateEmail = (email: string) => {
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -15,7 +15,7 @@ export const validatePassword = (password: string) => {
 
 const useSignIn = () => {
   const navigate = useNavigate();
-  const setAuthUser = useSetRecoilState(authUser);
+  const [authUser, setAuthUser] = useRecoilState(authAtom);
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
   const [signInData, setSignInData] = useState<SignInFormDataProps>({
     email: '',
@@ -53,7 +53,12 @@ const useSignIn = () => {
     }
   };
 
-  const handdleKakaoSignIn = () => {
+  const handleLogOut = () => {
+    localStorage.removeItem(AUTH_TOKEN_KEY);
+    setAuthUser({ token: '', isLoggedIn: false });
+  };
+
+  const handleKakaoSignIn = () => {
     console.log('kakao login');
   };
 
@@ -74,9 +79,11 @@ const useSignIn = () => {
   return {
     signInData,
     isDisabled,
+    authUser,
     handleChangeInput,
     handleSubmitSignIn,
-    handdleKakaoSignIn
+    handleKakaoSignIn,
+    handleLogOut
   };
 };
 
