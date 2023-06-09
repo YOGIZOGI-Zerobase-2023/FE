@@ -23,6 +23,7 @@ const Input = ({
       className="input input-bordered focus:outline-blue-500"
       value={value}
       onChange={handleChange}
+      autoComplete="off"
     />
   );
 };
