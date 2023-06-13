@@ -27,7 +27,7 @@ const SignIn = () => {
           <img
             className="absolute bottom-0 left-0"
             style={{ maxHeight: '50%' }}
-            src="/assets/images/signin.png"
+            src="https://yogizogi-zerobase-2023.github.io/FE/assets/images/signin.png"
             alt="일러스트"
           />
         </div>
@@ -80,7 +80,7 @@ const SignIn = () => {
                 onClick={handleKakaoSignIn}
               >
                 <img
-                  src="/assets/icons/kakaoicon.png"
+                  src="https://yogizogi-zerobase-2023.github.io/FE/assets/images/signin.png"
                   alt="카카오 로고"
                   className="w-8 h-8"
                 />
@@ -88,7 +88,7 @@ const SignIn = () => {
               </button>
               <p className="text-gray-500 text-sm text-center">
                 계정이 없으신가요?{' '}
-                <Link to={'/signUp'} className="text-blue-600">
+                <Link to='/signUp' className="text-blue-600">
                   가입하기
                 </Link>
               </p>

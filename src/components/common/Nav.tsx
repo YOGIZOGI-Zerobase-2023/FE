@@ -38,7 +38,7 @@ const Nav = () => {
       >
         <div className="h-16 w-full max-w-5xl px-3">
           <div className="flex-1 pl-2">
-            <Link to={'/'} className="cursor-pointer text-xl font-bold">
+            <Link to='/' className="cursor-pointer text-xl font-bold">
               YogiZogi
             </Link>
           </div>
@@ -87,7 +87,7 @@ const Nav = () => {
                   className="dropdown-content menu p-2 shadow bg-base-100 rounded-box text-md"
                 >
                   <li>
-                    <Link to={'/reservationConfirm'}>예약확인</Link>
+                    <Link to='/reservationConfirm'>예약확인</Link>
                   </li>
                   <li>
                     <button onClick={handleLogOut}>로그아웃</button>
@@ -95,7 +95,7 @@ const Nav = () => {
                 </ul>
               </div>
             ) : (
-              <Link to={'/signIn'} className="btn btn-error text-white">
+              <Link to='/signIn' className="btn btn-error text-white">
                 로그인
               </Link>
             )}
