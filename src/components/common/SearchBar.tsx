@@ -2,7 +2,7 @@ import { BiMap } from 'react-icons/bi';
 import { FcCalendar } from 'react-icons/fc';
 import { BsPeople } from 'react-icons/bs';
 import { BsSearch } from 'react-icons/bs';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { ko } from 'date-fns/esm/locale';
@@ -28,8 +28,8 @@ export const SearchBar = () => {
 
   const [dateContent, setDateContent] = useState('');
   const [calendarState, setCalendarState] = useState(false);
-  const calendarRef = useRef<HTMLDivElement>(null);
 
+  // 사용자가 check-in/check-out date를 선택하면, date를 형식(yyyy-mm-dd)에 맞게 변경
   useEffect(() => {
     if (
       search.checkOutDate.toString().slice(0, 15) !==
@@ -49,20 +49,6 @@ export const SearchBar = () => {
     });
   };
 
-  useEffect(() => {
-    const handleClickOutside = (e:MouseEvent) => {
-      if (calendarRef.current && !calendarRef.current.contains(e.target as Node)) {
-        setCalendarState(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
-
   return (
     <section className="flex flex-col sm:flex-row gap-5 md:gap-10 border min-w-fit w-auto max-w-4xl p-3 shadow-md mx-auto rounded-lg bg-white">
       <div className="w-full md:w-1/2 flex flex-col gap-1">
@@ -71,7 +57,7 @@ export const SearchBar = () => {
           <input
             type="text"
             placeholder="검색어 입력하세요"
-            className="w-full lg:w-full h-auto p-0 input focus:outline-none bg-inherit"
+            className="min-w-fit max-w-full lg:w-full h-auto p-0 input focus:outline-none bg-inherit"
             value={search.searchValue}
             onChange={(e) => {
               const newKeyword = e.target.value;
@@ -92,7 +78,7 @@ export const SearchBar = () => {
           />
         </div>
       </div>
-      <div className="w-full md:w-1/2 flex  justify-between">
+      <div className='w-full md:w-1/2 flex  justify-between'>
         <div className="relative flex flex-col gap-2 w-1/2 sm:w-1/2">
           <div className="flex items-center font-semibold text-lg gap-1">
             <FcCalendar />
@@ -107,12 +93,11 @@ export const SearchBar = () => {
               : '날짜 선택하기'}
           </p>
           <div
-            ref={calendarRef}
             className={`p-3 rounded-lg bg-slate-300 absolute flex flex-col lg:flex-row gap-1 top-14 ${
               calendarState ? 'block' : 'hidden'
             }`}
           >
-            <div>
+            <div className="">
               체크인
               <DatePicker
                 locale={ko}
@@ -127,7 +112,7 @@ export const SearchBar = () => {
                 }}
               />
             </div>
-            <div>
+            <div className="">
               체크아웃
               <DatePicker
                 locale={ko}
