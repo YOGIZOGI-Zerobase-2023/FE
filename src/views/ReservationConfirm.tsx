@@ -21,6 +21,7 @@ const ReservationConfirm = () => {
 
   if (!authUser.isLoggedIn || !authUser.user.id) {
     navigate('/');
+    return;
   }
 
   const [startDate, setStartDate] = useState<Date>(DEFAULT_START_DATE);
